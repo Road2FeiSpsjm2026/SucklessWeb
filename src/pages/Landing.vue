@@ -1,5 +1,4 @@
-<script lang="ts">
-export const description = "Landing Page"
+<script setup lang="ts">
 </script>
 <template>
     <h1>Vitajte na stranke timu NNCYB</h1>

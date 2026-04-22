@@ -3,18 +3,108 @@ export const description = 'Fotecky'
 </script>
 
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+
 const baseUrl = import.meta.env.BASE_URL
 
-const photos: { src: string, alt: string, title: string }[] = [
-    { src: `${baseUrl}p1.jpg`, alt: 'Group photo one', title: 'Fotecka 1' },
-    { src: `${baseUrl}p2.jpg`, alt: 'Group photo two', title: 'Fotecka 2' },
-    { src: `${baseUrl}p3.jpg`, alt: 'Group photo three', title: 'Fotecka 3 [Tu sme sa už poniektorí veľmi nudili]' },
-    { src: `${baseUrl}p4.jpg`, alt: 'Group photo four', title: 'Fotecka 4' },
-    { src: `${baseUrl}p5.jpg`, alt: 'Group photo five', title: 'Fotecka 5' },
-    { src: `${baseUrl}p6.jpg`, alt: 'Group photo six', title: 'Fotecka 6' },
-    { src: `${baseUrl}p7.jpg`, alt: 'Group photo seven', title: 'Fotecka 7' },
-    { src: `${baseUrl}p8.jpg`, alt: 'Group photo eight', title: 'Fotecka 8' },
+const photos: { src: string, alt: string }[] = [
+    { src: `${baseUrl}p1.jpg`, alt: 'Group photo one' },
+    { src: `${baseUrl}p2.jpg`, alt: 'Group photo two' },
+    { src: `${baseUrl}p3.jpg`, alt: 'Group photo three' },
+    { src: `${baseUrl}p4.jpg`, alt: 'Group photo four' },
+    { src: `${baseUrl}p5.jpg`, alt: 'Group photo five' },
+    { src: `${baseUrl}p6.jpg`, alt: 'Group photo six' },
+    { src: `${baseUrl}p7.jpg`, alt: 'Group photo seven' },
+    { src: `${baseUrl}p8.jpg`, alt: 'Group photo eight' },
 ]
+
+const galleryGrid = ref<HTMLElement | null>(null)
+
+let activeCard: HTMLElement | null = null
+
+function clamp(value: number, min: number, max: number) {
+    return Math.min(Math.max(value, min), max)
+}
+
+function resetCard(card: HTMLElement) {
+    card.style.setProperty('--photo-card-rotate-x', '0deg')
+    card.style.setProperty('--photo-card-rotate-y', '0deg')
+    delete card.dataset.interacting
+}
+
+function handleGalleryPointerMove(event: PointerEvent) {
+    if (event.pointerType === 'touch') {
+        return
+    }
+
+    const eventTarget = event.target
+
+    if (!(eventTarget instanceof HTMLElement)) {
+        return
+    }
+
+    const hoveredCard = eventTarget.closest('.gallery-card')
+
+    if (!(hoveredCard instanceof HTMLElement)) {
+        if (activeCard) {
+            resetCard(activeCard)
+            activeCard = null
+        }
+
+        return
+    }
+
+    if (hoveredCard !== activeCard) {
+        if (activeCard) {
+            resetCard(activeCard)
+        }
+
+        activeCard = hoveredCard
+        activeCard.dataset.interacting = 'true'
+    }
+
+    const rect = hoveredCard.getBoundingClientRect()
+    const localX = event.clientX - rect.left
+    const localY = event.clientY - rect.top
+    const normalizedX = (localX / rect.width) - 0.5
+    const normalizedY = (localY / rect.height) - 0.5
+    const rotateX = clamp(-normalizedY * 7, -4, 4)
+    const rotateY = clamp(normalizedX * 9, -5, 5)
+
+    hoveredCard.style.setProperty('--photo-card-rotate-x', `${rotateX.toFixed(2)}deg`)
+    hoveredCard.style.setProperty('--photo-card-rotate-y', `${rotateY.toFixed(2)}deg`)
+}
+
+function handleGalleryPointerLeave() {
+    if (!activeCard) {
+        return
+    }
+
+    resetCard(activeCard)
+    activeCard = null
+}
+
+onMounted(() => {
+    const grid = galleryGrid.value
+
+    if (!grid) {
+        return
+    }
+
+    grid.addEventListener('pointermove', handleGalleryPointerMove, { passive: true })
+    grid.addEventListener('pointerleave', handleGalleryPointerLeave)
+})
+
+onBeforeUnmount(() => {
+    const grid = galleryGrid.value
+
+    if (!grid) {
+        return
+    }
+
+    grid.removeEventListener('pointermove', handleGalleryPointerMove)
+    grid.removeEventListener('pointerleave', handleGalleryPointerLeave)
+})
 </script>
 
 <template>
@@ -23,10 +113,9 @@ const photos: { src: string, alt: string, title: string }[] = [
             <h1>Vychutnajte si náš fotografický talent...</h1>
         </header>
 
-        <div class="gallery-grid">
+        <div ref="galleryGrid" class="gallery-grid">
             <figure v-for="photo in photos" :key="photo.src" class="gallery-card">
                 <img :src="photo.src" :alt="photo.alt" loading="lazy" />
-                <figcaption>{{ photo.title }}</figcaption>
             </figure>
         </div>
     </section>
@@ -54,10 +143,32 @@ const photos: { src: string, alt: string, title: string }[] = [
 }
 
 .gallery-card {
+    --photo-card-rotate-x: 0deg;
+    --photo-card-rotate-y: 0deg;
+    position: relative;
     margin: 0;
     border: 1px solid var(--border);
     background: color-mix(in oklab, var(--card) 88%, black);
     overflow: hidden;
+    transform:
+        perspective(1100px)
+        rotateX(var(--photo-card-rotate-x))
+        rotateY(var(--photo-card-rotate-y))
+        translateY(0);
+    transform-style: preserve-3d;
+    transition:
+        transform 160ms ease,
+        box-shadow 160ms ease;
+    will-change: transform;
+}
+
+.gallery-card[data-interacting='true'] {
+    box-shadow: 0 18px 32px oklch(0 0 0 / 0.18);
+    transform:
+        perspective(1100px)
+        rotateX(var(--photo-card-rotate-x))
+        rotateY(var(--photo-card-rotate-y))
+        translateY(-4px);
 }
 
 .gallery-card img {
@@ -65,13 +176,7 @@ const photos: { src: string, alt: string, title: string }[] = [
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
-    border-bottom: 1px solid var(--border);
-}
-
-.gallery-card figcaption {
-    padding: 0.55rem 0.65rem;
-    font-size: 0.85rem;
-    color: var(--muted-foreground);
+    transform: translateZ(18px);
 }
 
 @media (max-width: 700px) {

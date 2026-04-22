@@ -31,7 +31,7 @@ import { Code } from 'lucide-vue-next'
       <CardDescription>Programator </CardDescription>
     </CardHeader>
     <CardContent>
-      <p>Nieco som robil, vacsinou to bolo na chuj, a potom som to prerobil este horsie...</p>
+      <p>Niečo som robil, väčšinou to bolo na chuj, a potom som to prerobil ešte horšie...</p>
     </CardContent>
     <CardFooter>
         <div class="flex w-full flex-wrap gap-2">

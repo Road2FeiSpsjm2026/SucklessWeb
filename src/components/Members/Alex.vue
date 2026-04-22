@@ -26,7 +26,7 @@ import { CircleQuestionMark } from 'lucide-vue-next'
             <AvatarFallback>AF</AvatarFallback>
             </Avatar>
         </div>
-      <CardTitle>Alexandra Farkasova</CardTitle>
+      <CardTitle>Alexandra Farkašová</CardTitle>
       <CardDescription>Balatro </CardDescription>
     </CardHeader>
     <CardContent>

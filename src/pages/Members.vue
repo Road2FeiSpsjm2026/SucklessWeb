@@ -9,7 +9,7 @@ import MatejK from '@/components/Members/MatejK.vue'
 <template>
     <section class="members-page">
         <header class="members-page__header">
-            <h1>Spoznajte nas tim...</h1>
+            <h1>Spoznajte náš tím...</h1>
         </header>
 
         <div class="members-grid">

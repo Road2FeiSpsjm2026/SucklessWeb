@@ -30,15 +30,14 @@ import { CircuitBoard } from 'lucide-vue-next'
       <CardDescription>Hardware </CardDescription>
     </CardHeader>
     <CardContent>
-      <p>Card Content</p>
+      <p>Ale aspoň sme to skúsili...</p>
     </CardContent>
     <CardFooter>
         <div class="flex w-full flex-wrap gap-2">
         <Badge
           variant="outline"
-          class="border-emerald-500/25 bg-emerald-500/10 text-emerald-200 dark:border-emerald-400/25 dark:bg-emerald-400/10 dark:text-emerald-100"
-        >
-                <CircuitBoard />
+          class="border-emerald-500/25 bg-emerald-500/10 text-emerald-200 dark:border-emerald-400/25 dark:bg-emerald-400/10 dark:text-emerald-100">
+                <CircuitBoard/>
                 Hardware
             </Badge>
         </div>

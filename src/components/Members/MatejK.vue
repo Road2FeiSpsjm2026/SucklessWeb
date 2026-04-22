@@ -13,7 +13,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge'
-import { CircleQuestionMark } from 'lucide-vue-next'
+import { Brush } from 'lucide-vue-next'
 </script>
 
 <template>
@@ -26,11 +26,11 @@ import { CircleQuestionMark } from 'lucide-vue-next'
             <AvatarFallback>MK</AvatarFallback>
             </Avatar>
         </div>
-      <CardTitle>Matej Kovac</CardTitle>
-      <CardDescription>Vlastne tam ani nebol </CardDescription>
+      <CardTitle>Matej Kováč</CardTitle>
+      <CardDescription>Design Robota</CardDescription>
     </CardHeader>
     <CardContent>
-      <p>Tak co sem mam napisat no...</p>
+      <p>Cakame na spravu</p>
     </CardContent>
     <CardFooter>
         <div class="flex w-full flex-wrap gap-2">
@@ -38,7 +38,7 @@ import { CircleQuestionMark } from 'lucide-vue-next'
           variant="outline"
           class="border-slate-500/25 bg-slate-500/10 text-slate-200 dark:border-slate-400/25 dark:bg-slate-400/10 dark:text-slate-100"
         >
-                <CircleQuestionMark />
+                <Brush />
                 Vlastne tam ani nebol
             </Badge>
         </div>

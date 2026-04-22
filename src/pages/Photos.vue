@@ -8,7 +8,7 @@ const baseUrl = import.meta.env.BASE_URL
 const photos: { src: string, alt: string, title: string }[] = [
     { src: `${baseUrl}p1.jpg`, alt: 'Group photo one', title: 'Fotecka 1' },
     { src: `${baseUrl}p2.jpg`, alt: 'Group photo two', title: 'Fotecka 2' },
-    { src: `${baseUrl}p3.jpg`, alt: 'Group photo three', title: 'Fotecka 3 [Tu sme sa uz poniektori velmi nudili]' },
+    { src: `${baseUrl}p3.jpg`, alt: 'Group photo three', title: 'Fotecka 3 [Tu sme sa už poniektorí veľmi nudili]' },
     { src: `${baseUrl}p4.jpg`, alt: 'Group photo four', title: 'Fotecka 4' },
 ]
 </script>
@@ -16,7 +16,7 @@ const photos: { src: string, alt: string, title: string }[] = [
 <template>
     <section class="gallery-page">
         <header class="gallery-header">
-            <h1>Vychutnajte si nas fotograficky talent...</h1>
+            <h1>Vychutnajte si náš fotografický talent...</h1>
         </header>
 
         <div class="gallery-grid">

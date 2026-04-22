@@ -14,17 +14,17 @@ import {
     <NavigationMenuList>
       <NavigationMenuItem>
         <NavigationMenuLink as-child :class="navigationMenuTriggerStyle()">
-          <RouterLink to="/">Home</RouterLink>
+          <RouterLink to="/">Domov</RouterLink>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink as-child :class="navigationMenuTriggerStyle()">
-          <RouterLink to="/members">Clenovia Timu</RouterLink>
+          <RouterLink to="/members">Členovia Tímu</RouterLink>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink as-child :class="navigationMenuTriggerStyle()">
-          <RouterLink to="/photos">Fotecky</RouterLink>
+          <RouterLink to="/photos">Fotky</RouterLink>
         </NavigationMenuLink>
       </NavigationMenuItem>
     </NavigationMenuList>

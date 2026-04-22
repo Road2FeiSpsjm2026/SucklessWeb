@@ -3,11 +3,13 @@ export const description = 'Fotecky'
 </script>
 
 <script setup lang="ts">
+const baseUrl = import.meta.env.BASE_URL
+
 const photos: { src: string, alt: string, title: string }[] = [
-    { src: '/p1.jpg', alt: 'Group photo one', title: 'Fotecka 1' },
-    { src: '/p2.jpg', alt: 'Group photo two', title: 'Fotecka 2' },
-    { src: '/p3.jpg', alt: 'Group photo three', title: 'Fotecka 3 [Tu sme sa uz poniektori velmi nudili]' },
-    { src: '/p4.jpg', alt: 'Group photo four', title: 'Fotecka 4' },
+    { src: `${baseUrl}p1.jpg`, alt: 'Group photo one', title: 'Fotecka 1' },
+    { src: `${baseUrl}p2.jpg`, alt: 'Group photo two', title: 'Fotecka 2' },
+    { src: `${baseUrl}p3.jpg`, alt: 'Group photo three', title: 'Fotecka 3 [Tu sme sa uz poniektori velmi nudili]' },
+    { src: `${baseUrl}p4.jpg`, alt: 'Group photo four', title: 'Fotecka 4' },
 ]
 </script>
 

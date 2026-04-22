@@ -10,6 +10,10 @@ const photos: { src: string, alt: string, title: string }[] = [
     { src: `${baseUrl}p2.jpg`, alt: 'Group photo two', title: 'Fotecka 2' },
     { src: `${baseUrl}p3.jpg`, alt: 'Group photo three', title: 'Fotecka 3 [Tu sme sa už poniektorí veľmi nudili]' },
     { src: `${baseUrl}p4.jpg`, alt: 'Group photo four', title: 'Fotecka 4' },
+    { src: `${baseUrl}p5.jpg`, alt: 'Group photo five', title: 'Fotecka 5' },
+    { src: `${baseUrl}p6.jpg`, alt: 'Group photo six', title: 'Fotecka 6' },
+    { src: `${baseUrl}p7.jpg`, alt: 'Group photo seven', title: 'Fotecka 7' },
+    { src: `${baseUrl}p8.jpg`, alt: 'Group photo eight', title: 'Fotecka 8' },
 ]
 </script>
 
@@ -46,7 +50,7 @@ const photos: { src: string, alt: string, title: string }[] = [
 .gallery-grid {
     display: grid;
     gap: 0.85rem;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .gallery-card {
@@ -72,7 +76,13 @@ const photos: { src: string, alt: string, title: string }[] = [
 
 @media (max-width: 700px) {
     .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
     }
 }
 </style>

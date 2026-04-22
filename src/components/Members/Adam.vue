@@ -31,7 +31,7 @@ import { Code } from 'lucide-vue-next'
       <CardDescription>Team Lead</CardDescription>
     </CardHeader>
     <CardContent>
-      <p>Card Content</p>
+      <p>Však už tam mám že programátor...</p>
     </CardContent>
     <CardFooter>
         <div class="flex w-full flex-wrap gap-2">

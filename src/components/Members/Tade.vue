@@ -28,7 +28,7 @@ import { Code } from 'lucide-vue-next'
             </Avatar>
         </div>
       <CardTitle>Tadeas Ditte</CardTitle>
-      <CardDescription>Programator </CardDescription>
+      <CardDescription>Programátor </CardDescription>
     </CardHeader>
     <CardContent>
       <p>Niečo som robil, väčšinou to bolo na chuj, a potom som to prerobil ešte horšie...</p>
